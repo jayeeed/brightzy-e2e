@@ -1,0 +1,143 @@
+Book,Error
+ebook batch 1/Amazing Animals Around the World,"LocatorAssertions.to_be_visible: Error: strict mode violation: get_by_text(""Amazing Animals Around the World"") resolved to 2 elements:
+    1) <p _ngcontent-pik-c184="""" class=""iconText ng-tns-c184-2"">Amazing Animals Around The World </p> aka get_by_text(""Amazing Animals Around The World"", exact=True)
+    2) <p _ngcontent-pik-c183="""" class=""mainText ng-tns-c183-3"">Amazing Animals Around the World</p> aka get_by_text(""Amazing Animals Around the World"", exact=True)
+
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for get_by_text(""Amazing Animals Around the World"")
+"
+ebook batch 1/Ben_s Blue Pen,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Ben likes to write.png \""]"").first
+"
+ebook batch 1/Jim and the Tin,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Jim has a tin. Png\""]"").first
+"
+ebook batch 1/Meg and the Web,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Meg sees a web.Png\""]"").first
+"
+ebook batch 1/Sam Ran Fast,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Sam and cat nap.png\""]"").first
+"
+ebook batch 1/the adventures of benny the brave bunny,"Locator.get_attribute: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'img[src*=""As Benny hopped through the forest, he met a friendly squirrel named Sammy. ""Where are you going, Benny?"" asked Sammy.png""]' is not a valid selector.
+    at query (<anonymous>:3448:41)
+    at <anonymous>:3458:7
+    at SelectorEvaluatorImpl._cached (<anonymous>:3235:20)
+    at SelectorEvaluatorImpl._queryCSS (<anonymous>:3445:17)
+    at SelectorEvaluatorImpl._querySimple (<anonymous>:3325:19)
+    at <anonymous>:3273:29
+    at SelectorEvaluatorImpl._cached (<anonymous>:3235:20)
+    at SelectorEvaluatorImpl.query (<anonymous>:3266:19)
+    at Object.query (<anonymous>:3480:44)
+    at <anonymous>:3438:21
+Call log:
+waiting for locator(""img[src*=\""As Benny hopped through the forest, he met a friendly squirrel named Sammy. \""Where are you going, Benny?\"" asked Sammy.png\""]"").first
+"
+ebook batch 1/The Big Dog,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\"" A big dog sits on the rug.png\""]"").first
+"
+ebook batch 1/The Brave Lion,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\"" A lion roams the savannah.png\""]"").first
+"
+ebook batch 1/The Little Mouse,"Page.goto: Timeout 30000ms exceeded.
+Call log:
+navigating to ""https://student.rubiiread.com/library"", waiting until ""load""
+"
+ebook batch 1/The Pup_s Fun Run,"Locator.click: Timeout 30000ms exceeded.
+Call log:
+waiting for get_by_role(""heading"", name=""The Pup's Fun Run"").first
+"
+ebook batch 1/Tim and His Pig,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Tim has a big pig.png \""]"").first
+"
+ebook batch 2/Bob and the Cob,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Bob saw a green mob.png\""]"").first
+"
+ebook batch 2/Liz and the Wig,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Liz met a brown pig.png\""]"").first
+"
+ebook batch 2/Pat and the Hat,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Pat had a red hat.png\""]"").first
+"
+ebook batch 2/Rad and the Dad,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Rad and dad ran. Png\""]"").first
+"
+ebook batch 2/Sad and the Dad,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Sad and Mad ran. Png\""]"").first
+"
+ebook batch 2/Tap and the Cap,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Tap and cap ran. Png\""]"").first
+"
+ebook batch 2/The Cat in the Hat,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Cat sat on mat. Hat.png\""]"").first
+"
+ebook batch 2/Zag and the Rag,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Zag and rag ran. Lag.png\""]"").first
+"
+ebook batch 7/Baking a Cake,'Original Content(EN-US)'
+ebook batch 7/Fluffy Cat,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Fluffy cat.jpeg\""]"").first
+"
+ebook batch 7/Game Day,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Game day!.jpeg\""]"").first
+"
+ebook batch 7/Ginny the Gentle Giant,'Original Content(EN-US)'
+ebook batch 7/Harry and the Hat_s New Home,'Original Content(EN-US)'
+ebook batch 7/Letter A Book one Word,"LocatorAssertions.to_be_visible: Error: strict mode violation: get_by_text(""Age"") resolved to 2 elements:
+    1) <p _ngcontent-mab-c184="""" class=""textNumber ng-tns-c184-2"">pages read</p> aka get_by_text(""pages read"")
+    2) <p _ngcontent-mab-c183="""" class=""mainText ng-tns-c183-3"">Age</p> aka get_by_text(""Age"", exact=True)
+
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for get_by_text(""Age"")
+"
+ebook batch 7/Letter D Book one word,"LocatorAssertions.to_be_visible: Error: strict mode violation: get_by_text(""Den"") resolved to 2 elements:
+    1) <p _ngcontent-vay-c111="""" class=""studentName pt-2 ng-star-inserted"">Jayed Student</p> aka get_by_text(""Jayed Student"")
+    2) <p _ngcontent-vay-c183="""" class=""mainText ng-tns-c183-3"">Den</p> aka get_by_text(""Den"", exact=True)
+
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for get_by_text(""Den"")
+"
+ebook batch 7/Letter F Book one word,"LocatorAssertions.to_be_visible: Error: strict mode violation: get_by_text(""Fin"") resolved to 2 elements:
+    1) <p _ngcontent-lut-c184="""" class=""pt-2 px-2 ng-tns-c184-2"">Finish reading</p> aka get_by_role(""button"", name=""Finish reading"")
+    2) <p _ngcontent-lut-c183="""" class=""mainText ng-tns-c183-3"">Fin</p> aka get_by_text(""Fin"", exact=True)
+
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for get_by_text(""Fin"")
+"
+ebook batch 7/Letter J book one word,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Jar.jpeg\""]"").first
+"
+ebook batch 7/Letter K book one word,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Kid,jpeg\""]"").first
+"
+ebook batch 7/Oh what a mess!,"Locator.get_attribute: Timeout 30000ms exceeded.
+Call log:
+waiting for locator(""img[src*=\""Toys everywhere!.jpeg\""]"").first
+"
+"ebook batch 7/Sophia and Her Robot Friend, R1",'Original Content(EN-US)'
+ebook batch 7/The Great Dig to China,'Original Content(EN-US)'
+ebook batch 7/Tiny Adventures with Tim and Lucy,'Original Content(EN-US)'
+ebook batch 7/Tiny the Brave Rescue Dog,'Original Content(EN-US)'
+ebook batch 7/Tommy and His Brave Flock,'Original Content(EN-US)'

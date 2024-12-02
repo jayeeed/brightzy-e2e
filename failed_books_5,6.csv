@@ -1,0 +1,35 @@
+Book,Error
+ebook batch 3/Meg and the Eg Family,"Locator expected to be visible
+Actual value: <element(s) not found> 
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for locator(""img[src*=\""Meg met Meg.png\""]"").first
+"
+ebook batch 5/Oliver the Invisible Star,"LocatorAssertions.to_be_visible: Unsupported token ""BADSTRING"" while parsing selector ""img[src*=""The crowd cheered and clapped, and Oliver felt an incredible rush of happiness. He realized he was no longer invisible; he was shining bright! After their performance, they received a standing ovation.png
+""]""
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for img[src*=""The crowd cheered and clapped, and Oliver felt an incredible rush of happiness. He realized he was no longer invisible; he was shining bright! After their performance, they received a standing ovation.png
+""] >> nth=0
+"
+ebook batch 5/Robo the Tiny Robot�s Breakfast Adventure,"Locator.click: Timeout 30000ms exceeded.
+Call log:
+waiting for get_by_role(""heading"", name=""Robo the Tiny Robot�s Breakfast Adventure"").first
+"
+ebook batch 5/Tommy�s Playground Adventure,"Locator.click: Timeout 30000ms exceeded.
+Call log:
+waiting for get_by_role(""heading"", name=""Tommy�s Playground Adventure"").first
+"
+ebook batch 6/Bella the Butterfly Who Thought She Was a Toucan,"LocatorAssertions.to_be_visible: Unsupported token ""BADSTRING"" while parsing selector ""img[src*=""Bella had bright, beautiful wings, but she believed she was a toucan bird. She admired the toucans with their big, colorful beaks.png
+""]""
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for img[src*=""Bella had bright, beautiful wings, but she believed she was a toucan bird. She admired the toucans with their big, colorful beaks.png
+""] >> nth=0
+"
+ebook batch 6/Wally the Friendly Wasp,"Locator expected to be visible
+Actual value: <element(s) not found> 
+Call log:
+LocatorAssertions.to_be_visible with timeout 5000ms
+  - waiting for locator(""img[src*=\""Wally was different from other wasps�he was very friendly.png\""]"").first
+"
