@@ -9,7 +9,7 @@ class Setup:
     def setup_browser(self, playwright: Playwright):
         self.browser = playwright.chromium.launch(
             headless=False,
-            slow_mo=1000,
+            slow_mo=500,
             args=[
                 "--start-maximized",
                 "--mute-audio",

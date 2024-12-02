@@ -32,11 +32,12 @@ def test_book_read():
         student_dashboard_page = StudentDashboardPage(student_page)
         student_dashboard_page.close_banner()
         student_dashboard_page.goto_books()
+        
 
         # Navigate and read books
-        book_list_page = BookListPage(page)
+        book_list_page = BookListPage(student_page)
         book_list_page.navigate_books()
-        book_list_page.select_first_book()
+        # book_list_page.click_viewmore()
         books = book_list_page.get_books()
         book_count = books.count()
 
@@ -48,7 +49,7 @@ def test_book_read():
                 writer = csv.writer(csvfile)
                 writer.writerow([i + 1, book_name])
 
-                read_book_page = BookReadPage(page)
+                read_book_page = BookReadPage(student_page)
                 read_book_page.read_book()
 
                 if i == 0:

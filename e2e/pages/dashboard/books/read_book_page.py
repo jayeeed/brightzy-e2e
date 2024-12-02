@@ -2,8 +2,8 @@ from playwright.sync_api import Page
 
 
 class BookReadPage:
-    def __init__(self, page: Page):
-        self.page = page
+    def __init__(self, page1: Page):
+        self.page = page1
 
     def read_book(self):
         self.page.get_by_text("Read book").click()
@@ -25,5 +25,6 @@ class BookReadPage:
             self.page.locator('img[src="/assets/images/book/left-btn.png"]').click()
 
     def close_book(self):
-        self.page.locator('img[src="/assets/images/Cross_button.webp"]').click()
-        self.page.locator("app-read-type-selection-page").get_by_role("button").click()
+        self.page.get_by_text("Continue").click()
+        self.page.locator('img[src="/assets/images/arrowLeftz.png"]').click()
+        

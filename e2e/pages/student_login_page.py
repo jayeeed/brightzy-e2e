@@ -8,4 +8,6 @@ class StudentLoginPage:
     def select_student(self):
         with self.page.expect_popup() as page1_info:
             self.page.locator("//tr[1]/td[4]/button/span[1]").click()
-        return page1_info.value
+        page1 = page1_info.value
+        self.page.close()
+        return page1
