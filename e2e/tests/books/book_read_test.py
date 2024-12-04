@@ -32,22 +32,30 @@ def test_book_read():
         student_dashboard_page = StudentDashboardPage(student_page)
         student_dashboard_page.close_banner()
         student_dashboard_page.goto_books()
-        
 
-        # Navigate and read books
-        book_list_page = BookListPage(student_page)
-        book_list_page.navigate_books()
-        # book_list_page.click_viewmore()
-        books = book_list_page.get_books()
-        book_count = books.count()
+        # Prepare CSV file
+        with open("books_read.csv", "w", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(
+                [
+                    "Sno",
+                    "Book Name",
+                    "Total Pages",
+                    "Page No",
+                    "Image URL",
+                    "Status Code",
+                ]
+            )
 
-        for i in range(book_count):
-            books.nth(i).click()
-            book_name = book_list_page.get_book_name()
+            # Navigate and read books
+            book_list_page = BookListPage(student_page)
+            book_list_page.navigate_books()
+            books = book_list_page.get_books()
+            book_count = books.count()
 
-            with open("books_read.csv", "a", newline="") as csvfile:
-                writer = csv.writer(csvfile)
-                writer.writerow([i + 1, book_name])
+            for i in range(book_count):
+                books.nth(i).click()
+                book_name = book_list_page.get_book_name()
 
                 read_book_page = BookReadPage(student_page)
                 read_book_page.read_book()
@@ -57,7 +65,10 @@ def test_book_read():
 
                 read_book_page.click_microphone()
                 total_pages = read_book_page.get_total_pages()
-                read_book_page.flip_pages(total_pages)
+
+                # Flip pages and log dynamically, including image URL and status code
+                read_book_page.flip_pages(book_name, total_pages, writer, i + 1)
+
                 read_book_page.close_book()
 
         # Teardown - Close browser

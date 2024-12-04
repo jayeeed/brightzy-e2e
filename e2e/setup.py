@@ -17,7 +17,7 @@ class Setup:
             ],
         )
         self.context = self.browser.new_context()
-        self.context.set_default_timeout(120000)
+        self.context.set_default_timeout(60000)
         self.context.grant_permissions(permissions=["microphone"])
         return self.browser, self.context
 

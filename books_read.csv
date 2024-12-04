@@ -1,17 +1,5 @@
-Book Index,Book Name,Page,Record ID,Status,Problem Words
-1,"Baa, Baa, Black Sheep (Bb)"
-1,"Baa, Baa, Black Sheep (Bb)"
-1,"Baa, Baa, Black Sheep (Bb)"
-1,"Baa, Baa, Black Sheep (Bb)"
-1,"Baa, Baa, Black Sheep (Bb)"
-1,"Baa, Baa, Black Sheep (Bb)"
-1,"Baa, Baa, Black Sheep (Bb)"
-1,"Baa, Baa, Black Sheep (Bb)"
-2,Mary Had a Little Lamb (Ll)
-3,This Little Piggy (Pp)
-4,"Quack, Quack, Quack (Qq)"
-5,"The Itsy, Bitsy Spider (Ss)"
-6,9 Cat Night
-7,Creepy Crawlers
-8,Four Fine Friends
-9,Fourteen Camel Caravan
+Sno,Book Name,Total Pages,Page No,Image URL,Status Code
+1,"Baa, Baa, Black Sheep (Bb)",8,1,https://augie-read.s3.eu-west-2.amazonaws.com/books/Baa_baa_black_sheep_1.jpg,200
+1,"Baa, Baa, Black Sheep (Bb)",8,2,https://augie-read.s3.eu-west-2.amazonaws.com/books/Baa_baa_black_sheep_1.jpg,200
+1,"Baa, Baa, Black Sheep (Bb)",8,3,https://augie-read.s3.eu-west-2.amazonaws.com/books/Baa_baa_black_sheep_4.jpg,200
+1,"Baa, Baa, Black Sheep (Bb)",8,4,https://augie-read.s3.eu-west-2.amazonaws.com/books/Baa_baa_black_sheep_5.jpg,200
