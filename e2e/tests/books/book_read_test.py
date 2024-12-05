@@ -40,7 +40,6 @@ def test_book_read():
                 [
                     "Sno",
                     "Book Name",
-                    "Total Pages",
                     "Page No",
                     "Image URL",
                     "Status Code",

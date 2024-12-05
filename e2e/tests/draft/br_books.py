@@ -1,5 +1,6 @@
 import csv
 import re
+import requests
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
@@ -33,6 +34,21 @@ def run(playwright: Playwright) -> None:
     page.locator(".viewMoreBookImg").first.click()
     page.wait_for_timeout(3000)
 
+    # Intercept network requests to capture the URL you're looking for
+    def handle_request(route):
+        request_url = route.request.url
+        if "/books/chapters/" in request_url:
+            print(
+                "Captured Request URL:", request_url
+            )  # Print or store the URL for further processing
+            # Optionally, you can perform the requests.get here to retrieve the response if needed
+            response = requests.get(request_url)
+            if response.status_code == 200:
+                chapters = response.json().get("chapters", [])
+                print("Chapter Data:", chapters)  # Handle the data as needed
+
+    page.on("route", handle_request)
+
     # Get all the books
     books = page.locator("//app-book/div/div[1]/img")
     book_count = books.count()
@@ -41,12 +57,12 @@ def run(playwright: Playwright) -> None:
         # Click on the current book
         books.nth(i).click()
 
-        book_name = page.text_content("//h2")
-        with open("books_read.csv", "a", newline="") as csvfile:
+        book_name = page.text_content("//app-bookactionselection/div/div/div[2]/p")
+        with open("books_read.csv", "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow([i + 1, book_name])
 
-        page.get_by_text("Read book").click()
+        page.get_by_text("Read", exact=True).click()
         page.wait_for_timeout(10000)
 
         # Perform actions specific to the first iteration
@@ -68,25 +84,8 @@ def run(playwright: Playwright) -> None:
             page.locator('img[src="/assets/images/book/left-btn.png"]').click()
             page.wait_for_timeout(5000)
 
-            # Verify responses for specific API calls
-            api_urls = [
-                "**/save-audio/",
-                "**/update-assignment/**/",
-                "**/get-running-record/",
-                "**/save-problem-words/**/",
-            ]
-            for url in api_urls:
-                response = page.expect_response(
-                    lambda response: url in response.url and response.status == 200,
-                    timeout=30000,
-                )
-                if response:
-                    print(f"{url} API returned 200")
-
         # Close the book and return to the book selection
-        page.wait_for_timeout(10000)
-        page.locator('img[src="/assets/images/Cross_button.webp"]').click()
-        page.locator("app-read-type-selection-page").get_by_role("button").click()
+        page.get_by_text("Continue").click()
 
     # ---------------------
     context.close()
