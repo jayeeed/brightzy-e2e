@@ -10,7 +10,7 @@ from e2e.pages.dashboard.books.read_book_page import BookReadPage
 from playwright.sync_api import sync_playwright
 
 
-def test_book_read():
+def test_book_read_animal():
     with sync_playwright() as playwright:
         setup = Setup()
         browser, context = setup.setup_browser(playwright)
@@ -34,7 +34,7 @@ def test_book_read():
         student_dashboard_page.goto_books()
 
         # Prepare CSV file
-        with open("books_read.csv", "w", newline="") as csvfile:
+        with open("books_read_animal.csv", "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(
                 [
@@ -66,7 +66,7 @@ def test_book_read():
                 total_pages = read_book_page.get_total_pages()
 
                 # Flip pages and log dynamically, including image URL and status code
-                read_book_page.flip_pages(book_name, total_pages, writer, i + 1)
+                read_book_page.flip_pages(book_name, total_pages, writer)
 
                 read_book_page.close_book()
 
