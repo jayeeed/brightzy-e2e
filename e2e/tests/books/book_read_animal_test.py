@@ -4,8 +4,8 @@ from e2e.setup import Setup
 from e2e.pages.parent_login_page import ParentLoginPage
 from e2e.pages.student_login_page import StudentLoginPage
 from e2e.pages.dashboard.student_dashboard_page import StudentDashboardPage
-from e2e.pages.dashboard.books.book_list_page import BookListPage
-from e2e.pages.dashboard.books.read_book_page import BookReadPage
+from e2e.pages.dashboard.books.animals.book_list_page import BookListPage
+from e2e.pages.dashboard.books.animals.read_book_page import BookReadPage
 
 from playwright.sync_api import sync_playwright
 
@@ -38,7 +38,6 @@ def test_book_read_animal():
             writer = csv.writer(csvfile)
             writer.writerow(
                 [
-                    "Sno",
                     "Book Name",
                     "Page No",
                     "Image URL",

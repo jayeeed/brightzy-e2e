@@ -12,7 +12,7 @@ class BookListPage:
 
     def navigate_books(self):
         self.page.goto(
-            "https://student-staging.brightzy.com/library/book-list/4?languageCode=en-US"
+            "https://student-staging.brightzy.com/library/book-list/10?languageCode=en-US"
         )
 
     def get_books(self):
