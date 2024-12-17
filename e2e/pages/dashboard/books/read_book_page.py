@@ -22,41 +22,22 @@ class BookReadPage:
         )
         return int(flipbook_text.split("/")[1])
 
-    def flip_pages(self, book_name: str, total_pages: int, writer, sno: int):
+    def flip_pages(self, book_name: str, total_pages: int, writer):
         for page_no in range(1, total_pages + 1):
-            self.page.wait_for_timeout(5000)
-            self.page.wait_for_load_state("domcontentloaded")
-            self.page.locator('img[src="/assets/images/book/left-btn.png"]').click()
 
-            # Locate all image-holder elements
-            image_elements = self.page.locator(
-                "//*[@id='flipbook']/div[2]/div/div"
-            ).all()
+            with self.page.expect_response("**/books/chapters/**") as response_info:
+                response = response_info.value
+                data = response.json()
 
-            for idx, image_element in enumerate(image_elements):
-                style_attr = image_element.get_attribute("style")
-                if style_attr and "background-image" in style_attr:
-                    # Extract image URL
-                    start_index = style_attr.find("url(") + 4
-                    end_index = style_attr.find(")", start_index)
-                    image_url = style_attr[start_index:end_index].strip('"').strip("'")
-                    full_url = image_url
+            base_url = "https://augie-read.s3.eu-west-2.amazonaws.com/books/"
+            image_url = data["chapters"][0]["image_url"]
+            full_url = base_url + image_url
 
-                    # Check image accessibility
-                    response = requests.head(full_url, timeout=5000)
-                    image_status = (
-                        "Accessible"
-                        if response.status_code == 200
-                        else "Not Accessible"
-                    )
-                else:
-                    full_url = None
-                    image_status = "No Image Found"
+            image_status = "200" if requests.get(full_url).status_code == 200 else "404"
 
             # Write to CSV with additional index for clarity
-            writer.writerow(
+            writer(
                 [
-                    sno,
                     book_name,
                     page_no,
                     full_url,
@@ -64,18 +45,9 @@ class BookReadPage:
                 ]
             )
 
-            api_urls = [
-                "**/save-audio/",
-                "**/update-assignment/**/",
-                "**/get-running-record/",
-                "**/save-problem-words/**/",
-            ]
-            for url in api_urls:
-                self.page.wait_for_load_state("domcontentloaded")
-                self.page.expect_response(
-                    lambda response: url in response.url and response.status == 200,
-                    timeout=30000,
-                )
+            self.page.wait_for_timeout(5000)
+            self.page.wait_for_load_state("domcontentloaded")
+            self.page.locator('img[src="/assets/images/book/left-btn.png"]').click()
 
     def close_book(self):
         self.page.get_by_text("Continue").click()
