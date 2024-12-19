@@ -16,20 +16,21 @@ def test_book_read_animal():
         browser, context = setup.setup_browser(playwright)
         page = context.new_page()
 
-        # Login
-        login_page = ParentLoginPage(page)
-        login_page.goto_login_page()
+        # # Login
+        # login_page = ParentLoginPage(page)
+        # login_page.goto_login_page()
 
-        with open("e2e/config/login_data.json") as json_file:
-            config = json.load(json_file)["user_credentials"]
-        login_page.login(config["email"], config["password"])
+        # with open("e2e/config/login_data.json") as json_file:
+        #     config = json.load(json_file)["user_credentials"]
+        # login_page.login(config["email"], config["password"])
 
         # Select Student
         dashboard_page = StudentLoginPage(page)
-        student_page = dashboard_page.select_student()
+        # student_page = dashboard_page.select_student()
+        dashboard_page.direct_login()
 
         # Select Reading Activities
-        student_dashboard_page = StudentDashboardPage(student_page)
+        student_dashboard_page = StudentDashboardPage(page)
         student_dashboard_page.close_banner()
         student_dashboard_page.goto_books()
 
@@ -38,7 +39,6 @@ def test_book_read_animal():
             writer = csv.writer(csvfile)
             writer.writerow(
                 [
-                    "Sno",
                     "Book Name",
                     "Page No",
                     "Image URL",
@@ -47,7 +47,7 @@ def test_book_read_animal():
             )
 
             # Navigate and read books
-            book_list_page = BookListPage(student_page)
+            book_list_page = BookListPage(page)
             book_list_page.navigate_books()
             books = book_list_page.get_books()
             book_count = books.count()
@@ -56,13 +56,15 @@ def test_book_read_animal():
                 books.nth(i).click()
                 book_name = book_list_page.get_book_name()
 
-                read_book_page = BookReadPage(student_page)
+                read_book_page = BookReadPage(page)
                 read_book_page.read_book()
 
                 if i == 0:
                     read_book_page.allow_access()
 
+                # read_book_page.asset_accessibility()
                 read_book_page.click_microphone()
+
                 total_pages = read_book_page.get_total_pages()
 
                 # Flip pages and log dynamically, including image URL and status code

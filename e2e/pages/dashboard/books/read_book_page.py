@@ -14,6 +14,10 @@ class BookReadPage:
         self.page.get_by_text("Allow Access", exact=True).click()
 
     def click_microphone(self):
+        self.page.wait_for_timeout(5000)
+        self.page.locator('img[src="/assets/images/book/mic.png"]').click()
+        self.page.reload()
+        self.page.wait_for_timeout(5000)
         self.page.locator('img[src="/assets/images/book/mic.png"]').click()
 
     def get_total_pages(self):
@@ -22,21 +26,27 @@ class BookReadPage:
         )
         return int(flipbook_text.split("/")[1])
 
+    def chapter_url(self):
+        with self.page.expect_response("**/books/chapters/**") as response_info:
+            response = response_info.value
+            data = response.json()
+        return data
+
     def flip_pages(self, book_name: str, total_pages: int, writer):
-        for page_no in range(1, total_pages + 1):
+        data = self.chapter_url()
+        base_url = "https://augie-read.s3.eu-west-2.amazonaws.com/books/"
 
-            with self.page.expect_response("**/books/chapters/**") as response_info:
-                response = response_info.value
-                data = response.json()
+        # Iterate through the chapters from the API response
+        for page_data in data["chapters"]:
+            page_no = page_data["page"]  # Get the current page number
+            image_url = page_data["image_url"]  # Get the image URL for the current page
+            full_url = f"{base_url}{image_url}"  # Construct the full image URL
 
-            base_url = "https://augie-read.s3.eu-west-2.amazonaws.com/books/"
-            image_url = data["chapters"][0]["image_url"]
-            full_url = base_url + image_url
-
+            # Check if the image URL is accessible
             image_status = "200" if requests.get(full_url).status_code == 200 else "404"
 
-            # Write to CSV with additional index for clarity
-            writer(
+            # Write the information to the CSV
+            writer.writerow(
                 [
                     book_name,
                     page_no,
@@ -45,9 +55,15 @@ class BookReadPage:
                 ]
             )
 
-            self.page.wait_for_timeout(5000)
-            self.page.wait_for_load_state("domcontentloaded")
-            self.page.locator('img[src="/assets/images/book/left-btn.png"]').click()
+            # Flip to the next page in the UI if it's not the last page
+            if page_no < total_pages + 1:
+                self.page.wait_for_timeout(5000)
+                self.page.locator('img[src="/assets/images/book/left-btn.png"]').click()
+
+    def asset_accessibility(self):
+        self.page.expect_response("click_the_blue_circle_to_start_reading.mp3")
+        self.page.expect_response("go-back.png")
+        self.page.expect_response("mic.png")
 
     def close_book(self):
         self.page.get_by_text("Continue").click()

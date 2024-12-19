@@ -19,3 +19,4 @@ class StudentLoginPage:
         self.page.get_by_label("Sign In").get_by_role("textbox").click()
         self.page.get_by_role("textbox").fill("44585537")
         self.page.get_by_role("button", name="Sign In").click()
+        self.page.wait_for_timeout(3000)
