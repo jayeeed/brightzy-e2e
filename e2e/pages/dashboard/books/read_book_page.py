@@ -15,10 +15,9 @@ class BookReadPage:
 
     def click_microphone(self):
         self.page.wait_for_timeout(5000)
+        self.page.on("console", lambda msg: print(f"Console log: {msg.text}"))
         self.page.locator('img[src="/assets/images/book/mic.png"]').click()
-        self.page.reload()
-        self.page.wait_for_timeout(5000)
-        self.page.locator('img[src="/assets/images/book/mic.png"]').click()
+        # self.page.touchscreen.tap(610, 505.22918701171875)
 
     def get_total_pages(self):
         flipbook_text = (
@@ -27,20 +26,25 @@ class BookReadPage:
         return int(flipbook_text.split("/")[1])
 
     def chapter_url(self):
-        with self.page.expect_response("**/books/chapters/**") as response_info:
+        with self.page.expect_response(
+            lambda response: "books/chapters/" in response.url
+            and response.request.method == "GET"
+        ) as response_info:
             response = response_info.value
             data = response.json()
         return data
 
     def flip_pages(self, book_name: str, total_pages: int, writer):
         data = self.chapter_url()
+        print("Data:", data)
+
         base_url = "https://augie-read.s3.eu-west-2.amazonaws.com/books/"
 
         # Iterate through the chapters from the API response
         for page_data in data["chapters"]:
-            page_no = page_data["page"]  # Get the current page number
-            image_url = page_data["image_url"]  # Get the image URL for the current page
-            full_url = f"{base_url}{image_url}"  # Construct the full image URL
+            page_no = page_data["page"]
+            image_url = page_data["image_url"]
+            full_url = f"{base_url}{image_url}"
 
             # Check if the image URL is accessible
             image_status = "200" if requests.get(full_url).status_code == 200 else "404"

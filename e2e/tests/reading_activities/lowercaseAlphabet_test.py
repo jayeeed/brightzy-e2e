@@ -11,7 +11,7 @@ from playwright.sync_api import sync_playwright
 import pytest
 
 
-@pytest.mark.skip(reason="Skipping for now")
+# @pytest.mark.skip(reason="Skipping for now")
 def test_lowercaseAlphabet():
     with sync_playwright() as playwright:
         setup = Setup()

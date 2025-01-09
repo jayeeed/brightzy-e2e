@@ -1,7 +1,6 @@
 import csv
 import json
 from e2e.setup import Setup
-from e2e.pages.parent_login_page import ParentLoginPage
 from e2e.pages.student_login_page import StudentLoginPage
 from e2e.pages.dashboard.student_dashboard_page import StudentDashboardPage
 from e2e.pages.dashboard.books.book_list_page import BookListPage
@@ -16,17 +15,8 @@ def test_book_read_animal():
         browser, context = setup.setup_browser(playwright)
         page = context.new_page()
 
-        # # Login
-        # login_page = ParentLoginPage(page)
-        # login_page.goto_login_page()
-
-        # with open("e2e/config/login_data.json") as json_file:
-        #     config = json.load(json_file)["user_credentials"]
-        # login_page.login(config["email"], config["password"])
-
         # Select Student
         dashboard_page = StudentLoginPage(page)
-        # student_page = dashboard_page.select_student()
         dashboard_page.direct_login()
 
         # Select Reading Activities
@@ -35,7 +25,7 @@ def test_book_read_animal():
         student_dashboard_page.goto_books()
 
         # Prepare CSV file
-        with open("books_read_animal.csv", "w", newline="") as csvfile:
+        with open("xcsv/books_read_places.csv", "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(
                 [
@@ -52,7 +42,7 @@ def test_book_read_animal():
             books = book_list_page.get_books()
             book_count = books.count()
 
-            for i in range(book_count):
+            for i in range(0, book_count):
                 books.nth(i).click()
                 book_name = book_list_page.get_book_name()
 

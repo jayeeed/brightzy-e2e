@@ -11,13 +11,18 @@ class Setup:
             headless=False,
             slow_mo=500,
             args=[
-                # "--start-maximized",
+                "--start-maximized",
                 "--mute-audio",
-                "--use-fake-ui-for-media-stream",
+                "--use-fake-ui-for-media-stream",  # Simulates microphone access
+                "--allow-running-insecure-content",  # Allow insecure content
+                "--disable-web-security",  # Disable security restrictions
             ],
         )
-        self.context = self.browser.new_context(viewport={"width": 1280, "height": 600})
-        self.context.set_default_timeout(1200000)
+        self.context = self.browser.new_context(
+            viewport={"width": 1280, "height": 600},
+            has_touch=True,
+        )
+        self.context.set_default_timeout(30000000)
         self.context.grant_permissions(permissions=["microphone"])
 
         # Start tracing
